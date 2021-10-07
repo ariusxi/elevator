@@ -2,6 +2,7 @@ import React, { createRef, Component } from 'react'
 
 import Building from '../components/Building'
 import Floor from '../components/Floor'
+import Panel from '../components/Panel'
 
 class Elevator extends Component {
 
@@ -19,20 +20,11 @@ class Elevator extends Component {
 		ref: createRef(),
 	}]
 
-	componentDidMount() {
-		const groundFloorRef = this.floors[this.floors.length - 1].ref
-		
-		groundFloorRef.current.scrollIntoView()
-	}
 
     render() {
         return (
             <Building>
-				{this.floors.reverse().map((floor, key) => (
-					<Floor
-						key={key} 
-						{...floor}/>
-				))}
+				<Panel />
             </Building>
         )
     }
