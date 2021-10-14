@@ -7,15 +7,19 @@ class Elevator extends Component {
 
 	floors = [{
 		name: "Térreo",
+		number: 'T',
 		ref: createRef(),
 	}, {
 		name: "Primeiro Andar",
+		number: '1',
 		ref: createRef(),
 	}, {
 		name: "Segundo Andar",
+		number: '2',
 		ref: createRef(),
 	}, {
 		name: "Terceiro Andar",
+		number: '3',
 		ref: createRef(),
 	}]
 
@@ -33,6 +37,7 @@ class Elevator extends Component {
 						key={key} 
 						{...floor}/>
 				))}
+
             </Building>
         )
     }
