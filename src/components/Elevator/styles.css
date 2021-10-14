@@ -1,0 +1,71 @@
+.Elevator .elevator-door {
+	position: absolute;
+	z-index: 3;
+	width: 25vw;
+	height: 70vh;
+
+	margin-left: 40vw;
+	margin-top: -28.3vh;
+
+	background-color: var(--elevator-border-background);
+	border-radius: 5px 5px 0 0;
+	border-top: 30px solid var(--elevator-border-top);
+	border-left: 30px solid var(--elevator-border-side);
+	border-right: 30px solid var(--elevator-border-side);
+}
+
+.Elevator .elevator-door .door {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	z-index: 8;
+}
+
+.Elevator .elevator-door .door::before,
+.Elevator .elevator-door .door::after {
+	content: '';
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	top: 0;
+	box-sizing: border-box;
+	background-color: var(--elevator-door-color);
+	-webkit-transition: all .4s ease;
+	transition: all .4s ease;
+}
+
+.Elevator .elevator-door .door::after {
+	left: 0;
+	border-right: 1px solid var(--elevator-door-border);
+}
+
+.Elevator .elevator-door .door::before {
+	right: -1px;
+	border-right: 1px solid var(--elevator-door-border);
+}
+
+.Elevator .elevator-door .door.active::before,
+.Elevator .elevator-door .door.active::after {
+	width: 0px;
+}
+
+.Elevator .floor {
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+
+	text-align: center;
+	font-size: 18px;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 5px;
+
+	border: 2px solid var(--elevator-floor-color);
+	background-color: var(--elevator-floor-indicator-background);
+	color: var(--elevator-floor-color);
+
+	position: absolute;
+	margin-left: 53vw;
+	margin-top: -35vh;
+}

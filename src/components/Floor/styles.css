@@ -1,0 +1,70 @@
+.Floor .wall {
+	display: flex;
+	height: 90vh;
+	flex-direction: column;
+}
+
+.Floor .ground {
+	width: 100%;
+	height: 10vh;
+
+	background-color: var(--floor-ground-color);
+}
+
+.Floor .wall::before,
+.Floor .wall::after {
+	content: '';
+	width: 100%;
+	height: 50vh;
+}
+
+.Floor .wall::before {
+	background-color: var(--floor-wall-color-1);
+}
+
+.Floor .wall::after {
+	background-color: var(--floor-wall-color-2);
+}
+
+.Floor .wall .shadow-corner-top,
+.Floor .wall .shadow-corner-bottom {
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+
+.Floor .wall .shadow-corner-top {
+	transform: rotate(135deg);
+	margin-left: -10vh;
+	margin-top: -2.2vh;
+
+	border-left: 15vh solid transparent;
+	border-right: 15vh solid transparent;
+	border-top: 15vh solid var(--floor-shadow-color);
+}
+
+.Floor .wall .shadow-corner-bottom {
+	transform: rotate(45deg);
+	margin-left: -10vh;
+	margin-top: 81.4vh;
+
+	border-left: 10vh solid transparent;
+	border-right: 10vh solid transparent;
+	border-top: 10vh solid var(--floor-shadow-color);
+}
+
+.Floor .wall .current-floor {
+	position: absolute;
+	text-align: center;
+	color: var(--floor-wall-indicator-color);
+
+	font-size: 50px;
+	font-weight: bold;
+	font-family: 'Oswald', sans-serif;
+
+	text-transform: uppercase;
+	text-shadow: 2px 0px 1px var(--floor-wall-indicator-shadow);
+
+	margin-top: 45vh;
+	margin-left: 10vw;
+}
