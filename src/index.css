@@ -3,6 +3,16 @@
 	padding: 0;
 }
 
+:root{
+	--elevator-panel-background: #3ecf8e;
+	--elevator-panel-number-ground-border: #46495a;
+	--elevator-panel-number-ground-background: #6c7085;
+	--elevator-panel-number-color: #f3f3f3;
+	--elevator-panel-number-border:#29885d;
+	--elevator-panel-number-hover: rgba(0,0,0,0.5);
+	
+}
+
 body {
 	overflow: hidden;
 }

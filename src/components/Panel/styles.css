@@ -1,26 +1,35 @@
-.circle {
-  background: #333;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 2em;
-
-  display: -webkit-flex;
-   display: -ms-flexbox;
-          display: flex;
-
-  -webkit-align-items: center;
-    -webkit-box-align: center;
-     -ms-flex-align: center;
-        align-items: center;
-  
-justify-content: center;
-background: #b4b3b3;
-
-  height: 100px;
-  width: 100px;
-  
-  border-width: medium;
-  border-style: solid;
-  border-color: rgb(136, 136, 136);
+.Panel {
+	height: 50vh;
+	width: 50vw;
+  background-color: var(--elevator-panel-background);
+  display: grid;
+  grid-template-columns: repeat(2,50%);
+  grid-template-rows: 50% 50%;
 }
+
+.Panel .circle {
+	background: var(--elevator-panel-background);
+	color: var(--elevator-panel-number-color);
+  border:2px solid var(--elevator-panel-number-border);
+	border-radius: 10px;
+	font-size: 2em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	margin: 1em;
+  transition: .1s all;
+  cursor: pointer;
+}
+
+.Panel .circle.ground{
+  background-color: var(--elevator-panel-number-ground-background);
+  border: 3px solid var(--elevator-panel-number-ground-border);
+
+}
+
+.Panel .circle:active {
+	background: var(--elevator-panel-number-hover);
+}
+
 
