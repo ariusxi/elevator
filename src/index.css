@@ -1,3 +1,25 @@
+:root {
+	/* Floor */
+	--floor-wall-color-1: #5a5acc;
+	--floor-wall-color-2: #5a5acc;
+
+	--floor-wall-indicator-color: #3ecf8e;
+	--floor-wall-indicator-shadow: #32ad76;
+
+	--floor-shadow-color: rgba(0, 0, 0, 0.2);
+	--floor-ground-color: #4c4cad;
+
+	/* Elevator */
+	--elevator-border-top: #3ecf8e;
+	--elevator-border-side: #32ad76;
+	--elevator-border-background: #444;
+
+	--elevator-floor-color: #3ecf8e;
+	--elevator-floor-indicator-background: #171717;
+	--elevator-door-color: #289263;
+	--elevator-door-border: #1d6947;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -5,6 +27,7 @@
 
 :root{
 	--elevator-panel-background: #3ecf8e;
+	--elevator-panel-border-color: #1a4e37;
 	--elevator-panel-number-ground-border: #46495a;
 	--elevator-panel-number-ground-background: #6c7085;
 	--elevator-panel-number-color: #f3f3f3;
@@ -14,5 +37,6 @@
 }
 
 body {
-	overflow: hidden;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }

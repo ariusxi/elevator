@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: repeat(2,50%);
   grid-template-rows: 50% 50%;
+  border:5px solid var(--elevator-panel-border-color);
 }
 
 .Panel .circle {
