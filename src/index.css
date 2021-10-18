@@ -18,6 +18,9 @@
 	--elevator-floor-indicator-background: #171717;
 	--elevator-door-color: #289263;
 	--elevator-door-border: #1d6947;
+
+	--elevator-panel-color: #32ad76;
+	--elevator-panel-button: #76766b;
 }
 
 * {

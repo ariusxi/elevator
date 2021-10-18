@@ -5,8 +5,7 @@ import './styles.css'
 const Elevator = ({ number, name }) => {
 	return (
 		<div className="Elevator">
-			<div 
-				className="panel-call">
+			<div className="panel-call">
 				<div className="button-up"></div>
 				<div className="button-down"></div>
 			</div>
