@@ -4,7 +4,7 @@ import Elevator from './../Elevator'
 
 import './styles.css'
 
-const Floor = forwardRef(({ name, number }, ref) => {
+const Floor = forwardRef(({ name, number, currentFloor }, ref) => {
     return (
         <div
 			ref={ref}
@@ -15,7 +15,8 @@ const Floor = forwardRef(({ name, number }, ref) => {
 				<div className="shadow-corner-bottom"></div>
 				<Elevator 
 					name={name}
-					number={number}/>
+					number={number}
+					currentFloor={currentFloor}/>
 			</div>
 			<div className="ground"></div>
         </div>
