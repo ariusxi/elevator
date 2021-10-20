@@ -21,6 +21,17 @@
 
 	--elevator-panel-color: #32ad76;
 	--elevator-panel-button: #76766b;
+
+	--elevator-inside-border-bottom: #1d6947;
+	--elevator-inside-border-side: #227c54;
+	--elevator-inside-border-top: #2b9b68;
+	--elevator-inside-background: #22724e;
+
+	--elevator-inside-handrails-color: #A19494;
+	--elevator-inside-handrails-side: #ACACAC;
+
+	--elevator-inside-panel-background: #b6b6b6;
+	--elevator-inside-panel-buttons: #556673;
 }
 
 * {
@@ -29,6 +40,5 @@
 }
 
 body {
-	overflow-y: scroll;
-	overflow-x: hidden;
+	overflow: hidden;
 }

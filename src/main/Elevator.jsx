@@ -23,6 +23,10 @@ class Elevator extends Component {
 		ref: createRef(),
 	}]
 
+	state = {
+		currentFloor: 'T',
+	}
+
 	componentDidMount() {
 		const groundFloorRef = this.floors[this.floors.length - 1].ref
 		
@@ -30,14 +34,19 @@ class Elevator extends Component {
 	}
 
     render() {
+		const { currentFloor } = this.state
+
         return (
             <Building>
-				{this.floors.reverse().map((floor, key) => (
-					<Floor
-						key={key} 
-						{...floor}/>
-				))}
+				{this.floors.reverse().map((floor, key) => {
+					const props = {...floor, currentFloor}
 
+					return (
+						<Floor
+							key={key}
+							{...props}/>
+					)
+				})}
             </Building>
         )
     }
