@@ -1,11 +1,20 @@
 .Panel {
-	height: 50vh;
-	width: 50vw;
+	height: 20vh;
+	width: 20vw;
   background-color: var(--elevator-panel-background);
   display: grid;
   grid-template-columns: repeat(2,50%);
   grid-template-rows: 50% 50%;
   border:5px solid var(--elevator-panel-border-color);
+  position: fixed;
+  top: 40% ;
+  right: 150px;
+  animation-name: scroll;
+  animation-timing-function: linear;
+  animation-duration: 2s;
+}
+.SecondPanel{
+  background-color: #666;
 }
 
 .Panel .circle {
@@ -13,7 +22,7 @@
 	color: var(--elevator-panel-number-color);
   border:2px solid var(--elevator-panel-number-border);
 	border-radius: 10px;
-	font-size: 2em;
+	font-size: 1.5em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -34,3 +43,6 @@
 }
 
 
+@keyframes scroll{
+  from{right: -400px;}
+}
