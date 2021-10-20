@@ -2,6 +2,7 @@ import React, { createRef, Component } from 'react'
 
 import Building from '../components/Building'
 import Floor from '../components/Floor'
+import Panel from '../components/Panel'
 
 class Elevator extends Component {
 
@@ -38,15 +39,12 @@ class Elevator extends Component {
 
         return (
             <Building>
-				{this.floors.reverse().map((floor, key) => {
-					const props = {...floor, currentFloor}
-
-					return (
-						<Floor
-							key={key}
-							{...props}/>
-					)
-				})}
+              {this.floors.reverse().map((floor, key) => (
+                <Floor
+                  key={key} 
+                  {...floor}/>
+              ))}
+              <Panel />
             </Building>
         )
     }
