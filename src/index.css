@@ -18,6 +18,20 @@
 	--elevator-floor-indicator-background: #171717;
 	--elevator-door-color: #289263;
 	--elevator-door-border: #1d6947;
+
+	--elevator-panel-color: #32ad76;
+	--elevator-panel-button: #76766b;
+
+	--elevator-inside-border-bottom: #1d6947;
+	--elevator-inside-border-side: #227c54;
+	--elevator-inside-border-top: #2b9b68;
+	--elevator-inside-background: #22724e;
+
+	--elevator-inside-handrails-color: #A19494;
+	--elevator-inside-handrails-side: #ACACAC;
+
+	--elevator-inside-panel-background: #b6b6b6;
+	--elevator-inside-panel-buttons: #556673;
 }
 
 * {
@@ -25,7 +39,17 @@
 	padding: 0;
 }
 
+:root{
+	--elevator-panel-background: #3ecf8e;
+	--elevator-panel-border-color: #1a4e37;
+	--elevator-panel-number-ground-border: #46495a;
+	--elevator-panel-number-ground-background: #6c7085;
+	--elevator-panel-number-color: #f3f3f3;
+	--elevator-panel-number-border:#29885d;
+	--elevator-panel-number-hover: rgba(0,0,0,0.5);
+	
+}
+
 body {
-	overflow-y: scroll;
-	overflow-x: hidden;
+	overflow: hidden;
 }
