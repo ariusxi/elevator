@@ -24,16 +24,27 @@ class Elevator extends Component {
 		ref: createRef(),
 	}]
 
+	state = {
+		currentFloor: 'T',
+	}
+
+	componentDidMount() {
+		const groundFloorRef = this.floors[this.floors.length - 1].ref
+		
+		groundFloorRef.current.scrollIntoView()
+	}
 
     render() {
+		const { currentFloor } = this.state
+
         return (
             <Building>
-				{this.floors.reverse().map((floor, key) => (
-					<Floor
-						key={key} 
-						{...floor}/>
-				))}
-				<Panel />
+              {this.floors.reverse().map((floor, key) => (
+                <Floor
+                  key={key} 
+                  {...floor}/>
+              ))}
+              <Panel />
             </Building>
         )
     }

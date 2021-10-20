@@ -69,3 +69,125 @@
 	margin-left: 53vw;
 	margin-top: -35vh;
 }
+
+.Elevator .panel-call {
+	width: 40px;
+	height: 60px;
+	border-radius: 5px;
+	z-index: 9;
+	left: 70vw;
+	position: absolute;
+	background-color: var(--elevator-panel-color);
+}
+
+.Elevator .panel-call .button-up,
+.Elevator .panel-call .button-down {
+	width: 0px;
+	height: 0px;
+	border: 7px solid transparent;
+	box-sizing: border-box;
+	left: 50%;
+	margin-top: 11px;
+	margin-left: 13px;
+	transition: border-color .2s ease-in;
+	cursor: pointer;
+}
+
+.Elevator .panel-call .button-up {
+	border-bottom: 7px solid var(--elevator-panel-button);
+	top: 7px;
+}
+
+.Elevator .panel-call .button-down {
+	border-top: 7px solid var(--elevator-panel-button);
+	bottom: 7px;
+}
+
+.Elevator .inside {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	border-bottom: 30px solid var(--elevator-inside-border-bottom);
+	border-left: 25px solid var(--elevator-inside-border-side);
+	border-right: 25px solid var(--elevator-inside-border-side);
+	border-top: 16px solid var(--elevator-inside-border-top);
+	background-color: var(--elevator-inside-background);
+	box-sizing: border-box;
+	z-index: 2;
+}
+
+.Elevator .inside .handrails {
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	height: 20px;
+	background-color: var(--elevator-inside-handrails-color);
+	top: 50%;
+	left: 0;
+	margin-top: -10px;
+}
+
+.Elevator .inside .handrails::before,
+.Elevator .inside .handrails::after {
+	content: '';
+	position: absolute;
+	top: 4px;
+	height: 21px;
+	width: 23px;
+	background-color: var(--elevator-inside-handrails-side);
+}
+
+.Elevator .inside .handrails::before {
+	right: -24px;
+	transform: skewX(20deg) rotate(20deg);
+}
+
+.Elevator .inside .handrails::after {
+	left: -24px;
+	transform: skewX(-20deg) rotate(-20deg);
+}
+
+.Elevator .inside .btns {
+	position: absolute;
+	top: 20vh;
+	right: -20px;
+	height: 30px;
+	width: 0;
+	border: 4px solid transparent;
+	border-right: 12px solid var(--elevator-inside-panel-background);
+}
+
+.Elevator .inside .btns .bt-l,
+.Elevator .inside .btns .bt-r {
+	position: absolute;
+	width: 5px;
+}
+
+.Elevator .inside .btns .bt-l {
+	top: 10px;
+	left: 1px;
+}
+
+.Elevator .inside .btns .bt-r {
+	top: 9px;
+	left: 6px;
+}
+
+.Elevator .inside .btns .bt-l .bt:nth-child(1) {
+	top: 6px;
+}
+
+.Elevator .inside .btns .bt-r .bt:nth-child(1) {
+	top: 7px;
+}
+
+.Elevator .inside .btns .bt {
+	position: absolute;
+	left: 0;
+	width: 5px;
+	height: 4px;
+	background-color: var(--elevator-inside-panel-buttons);
+	border-radius: 50%;
+	transform: rotateY(60deg);
+}
