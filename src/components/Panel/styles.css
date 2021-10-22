@@ -1,48 +1,55 @@
 .Panel {
-	height: 20vh;
 	width: 20vw;
-  background-color: var(--elevator-panel-background);
-  display: grid;
-  grid-template-columns: repeat(2,50%);
-  grid-template-rows: 50% 50%;
-  border:5px solid var(--elevator-panel-border-color);
-  position: fixed;
-  top: 40% ;
-  right: 150px;
-  animation-name: scroll;
-  animation-timing-function: linear;
-  animation-duration: 2s;
+	border-radius: 5px;
+	background-color: var(--elevator-panel-background);
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+	grid-template-rows: 50% 50%;
+	border: 5px solid var(--elevator-panel-border-color);
+	position: fixed;
+	z-index: 10;
+	top: 40%;
+	right: -40vw;
+	transition: 2.0s right;
 }
-.SecondPanel{
-  background-color: #666;
+
+.Panel.active {
+	right: 10vw;
+}
+
+.SecondPanel {
+	background-color: #666;
 }
 
 .Panel .circle {
 	background: var(--elevator-panel-background);
 	color: var(--elevator-panel-number-color);
-  border:2px solid var(--elevator-panel-number-border);
+	border: 2px solid var(--elevator-panel-number-border);
 	border-radius: 10px;
 	font-size: 1.5em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	margin: 1em;
-  transition: .1s all;
-  cursor: pointer;
+	padding: 10px 20px;
+	transition: 0.1s all;
+	cursor: pointer;
 }
 
-.Panel .circle.ground{
-  background-color: var(--elevator-panel-number-ground-background);
-  border: 3px solid var(--elevator-panel-number-ground-border);
-
+.Panel .circle.ground {
+	background-color: var(--elevator-panel-number-ground-background);
+	border: 3px solid var(--elevator-panel-number-ground-border);
 }
 
 .Panel .circle:active {
 	background: var(--elevator-panel-number-hover);
 }
 
-
-@keyframes scroll{
-  from{right: -400px;}
+@keyframes scroll {
+	from {
+		right: -40vw;
+	}
+	to {
+		right: 10vw;
+	}
 }

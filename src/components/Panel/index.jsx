@@ -2,14 +2,31 @@ import React from 'react'
 
 import './styles.css'
 
-const Panel = ({ children }) => {
-    return (
-        <div className="Panel">
-            <button className='circle'>3</button>
-            <button className='circle'>2</button>
-            <button className='circle'>1</button>
-            <button className='circle ground'>T</button>
+const Panel = ({ 
+	currentFloor, 
+	elevatorFloor, 
+	floors,
+	changeFloor,
+}) => {
 
+	const getClassName = () => {
+		let className = "Panel "
+		if (currentFloor === elevatorFloor) {
+			className += "active"
+		}
+		return className
+	}
+
+    return (
+        <div className={getClassName()}>
+			{floors.map((floor, key) => (
+				<button
+					key={key}
+					onClick={() => changeFloor(floor.number)}
+					className={`circle ${floor.number === 'T' ? 'ground' : ''}`}>
+					{floor.number}
+				</button>
+			))}
         </div>
     )
 }
