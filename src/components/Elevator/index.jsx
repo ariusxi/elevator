@@ -2,17 +2,21 @@ import React from 'react'
 
 import './styles.css'
 
-const Elevator = ({ number, name, currentFloor }) => {
+const Elevator = ({ 
+	number, 
+	currentFloor,
+	elevatorFloor,
+ }) => {
 	return (
 		<div className="Elevator">
 			<div className="panel-call">
 				<div className="button-up"></div>
 				<div className="button-down"></div>
 			</div>
-			<div className="floor">{currentFloor}</div>
+			<div className="floor">{elevatorFloor}</div>
 			<div className="elevator-door">
-				<div className={`door ${currentFloor === number ? 'active' : ''}`}></div>
-				{currentFloor === number ? (
+				<div className={`door ${elevatorFloor === currentFloor ? 'active' : ''}`}></div>
+				{elevatorFloor === number ? (
 					<div className="inside">
 						<div className="btns">
 							<div className="bt-l">

@@ -7,25 +7,32 @@ import Panel from '../components/Panel'
 class Elevator extends Component {
 
 	floors = [{
-		name: "Térreo",
-		number: 'T',
-		ref: createRef(),
-	}, {
-		name: "Primeiro Andar",
-		number: '1',
+		name: "Terceiro Andar",
+		number: '3',
 		ref: createRef(),
 	}, {
 		name: "Segundo Andar",
 		number: '2',
 		ref: createRef(),
 	}, {
-		name: "Terceiro Andar",
-		number: '3',
+		name: "Primeiro Andar",
+		number: '1',
+		ref: createRef(),
+	}, {
+		name: "Térreo",
+		number: 'T',
 		ref: createRef(),
 	}]
 
 	state = {
 		currentFloor: 'T',
+		elevatorFloor: 'T',
+	}
+
+	constructor(props) {
+		super(props)
+
+		this.changeFloor = this.changeFloor.bind(this)
 	}
 
 	componentDidMount() {
@@ -34,17 +41,75 @@ class Elevator extends Component {
 		groundFloorRef.current.scrollIntoView()
 	}
 
+	scrollFloor(floor) {
+		const { ref: groundFloorRef } = floor
+
+		groundFloorRef.current.scrollIntoView({ 
+			behavior: "smooth",
+		})
+	}
+
+	changeFloor(selectedFloor) {
+		const floor = this.floors.find((floor) => floor.number === selectedFloor)
+
+		const currentFloorIndex = this.floors.findIndex((floor) => floor.number === this.state.currentFloor)
+		const floorIndex = this.floors.findIndex((floor) => floor.number === selectedFloor)
+
+		this.setState({
+			currentFloor: selectedFloor,
+		})
+
+		const self = this
+		setTimeout(() => {
+			let currentIndex = currentFloorIndex
+
+			self.scrollFloor(floor)
+			const interval = setInterval(() => {
+				if (currentFloorIndex < floorIndex) {
+					currentIndex++
+				} else {
+					currentIndex--
+				}
+
+				self.setState({
+					elevatorFloor: this.floors[currentIndex].number,
+				})
+
+				if (currentIndex === floorIndex) {
+					clearInterval(interval)
+				}
+			}, 1000)
+		}, 2000)
+	}
+
     render() {
-		const { currentFloor } = this.state
+		const { 
+			currentFloor,
+			elevatorFloor,
+		} = this.state
 
         return (
             <Building>
-              {this.floors.reverse().map((floor, key) => (
-                <Floor
-                  key={key} 
-                  {...floor}/>
-              ))}
-              <Panel />
+				{this.floors.map((floor, key) => {
+					const props = {
+						...floor,
+						currentFloor,
+						elevatorFloor,
+					}
+
+					return (
+						<Floor
+							key={key}
+							{...props}>
+							{floor.decoration}
+						</Floor>
+					)
+				})}
+				<Panel
+					currentFloor={currentFloor}
+					elevatorFloor={elevatorFloor}
+					floors={this.floors}
+					changeFloor={this.changeFloor}/>
             </Building>
         )
     }
