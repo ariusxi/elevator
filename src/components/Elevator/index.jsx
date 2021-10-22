@@ -2,15 +2,19 @@ import React from 'react'
 
 import './styles.css'
 
-const Elevator = ({ 
-	number, 
+const Elevator = ({
+	number,
 	currentFloor,
 	elevatorFloor,
- }) => {
+	callElevator,
+}) => {
 	return (
 		<div className="Elevator">
 			<div className="panel-call">
-				<div className="button-up"></div>
+				<div
+					className="button-up"
+					onClick={() => callElevator()}>
+				</div>
 				<div className="button-down"></div>
 			</div>
 			<div className="floor">{elevatorFloor}</div>

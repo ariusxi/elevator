@@ -26,25 +26,26 @@ class Elevator extends Component {
 
 	state = {
 		currentFloor: 'T',
-		elevatorFloor: 'T',
+		elevatorFloor: '3',
 	}
 
 	constructor(props) {
 		super(props)
 
 		this.changeFloor = this.changeFloor.bind(this)
+		this.callElevator = this.callElevator.bind(this)
 	}
 
 	componentDidMount() {
 		const groundFloorRef = this.floors[this.floors.length - 1].ref
-		
+
 		groundFloorRef.current.scrollIntoView()
 	}
 
 	scrollFloor(floor) {
 		const { ref: groundFloorRef } = floor
 
-		groundFloorRef.current.scrollIntoView({ 
+		groundFloorRef.current.scrollIntoView({
 			behavior: "smooth",
 		})
 	}
@@ -82,19 +83,44 @@ class Elevator extends Component {
 		}, 2000)
 	}
 
-    render() {
-		const { 
+	callElevator() {
+		const currentFloorIndex = this.floors.findIndex((floor) => floor.number === this.state.elevatorFloor)
+		const floorIndex = this.floors.findIndex((floor) => floor.number === this.state.currentFloor)
+
+		let currentIndex = currentFloorIndex
+
+		const self = this
+		const interval = setInterval(() => {
+			if (currentFloorIndex < floorIndex) {
+				currentIndex++
+			} else {
+				currentIndex--
+			}
+
+			self.setState({
+				elevatorFloor: this.floors[currentIndex].number,
+			})
+
+			if (currentIndex === floorIndex) {
+				clearInterval(interval)
+			}
+		}, 1000)
+	}
+
+	render() {
+		const {
 			currentFloor,
 			elevatorFloor,
 		} = this.state
 
-        return (
-            <Building>
+		return (
+			<Building>
 				{this.floors.map((floor, key) => {
 					const props = {
 						...floor,
 						currentFloor,
 						elevatorFloor,
+						callElevator: this.callElevator,
 					}
 
 					return (
@@ -109,10 +135,10 @@ class Elevator extends Component {
 					currentFloor={currentFloor}
 					elevatorFloor={elevatorFloor}
 					floors={this.floors}
-					changeFloor={this.changeFloor}/>
-            </Building>
-        )
-    }
+					changeFloor={this.changeFloor} />
+			</Building>
+		)
+	}
 
 }
 
