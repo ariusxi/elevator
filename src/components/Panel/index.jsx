@@ -23,7 +23,7 @@ const Panel = ({
 				<button
 					key={key}
 					onClick={() => changeFloor(floor.number)}
-					className={`circle ${floor.number === 'T' ? 'ground' : ''}`}>
+					className={`circle ${floor.number === elevatorFloor ? 'active' : ''}`}>
 					{floor.number}
 				</button>
 			))}

@@ -36,7 +36,7 @@
 	cursor: pointer;
 }
 
-.Panel .circle.ground {
+.Panel .circle.active {
 	background-color: var(--elevator-panel-number-ground-background);
 	border: 3px solid var(--elevator-panel-number-ground-border);
 }

@@ -12,6 +12,11 @@ import ElevatorDoorClose from '../assets/sounds/elevator-door-close.mp3'
 import ElevatorDing from '../assets/sounds/elevator-ding.mp3'
 
 import CandyMachineImg from '../assets/images/candy-machine-cropped.png'
+import CatSleeping from '../assets/images/cat-sleeping-2.gif'
+
+import Plant1 from '../assets/images/plant-1.png'
+import Plant2 from '../assets/images/plant-2.png'
+import Plant3 from '../assets/images/plant-3.png'
 
 import './Elevator.css'
 
@@ -26,15 +31,15 @@ class Elevator extends Component {
 	}
 
 	floors = [{
-		name: "Terceiro Andar",
+		name: "3º",
 		number: '3',
 		ref: createRef(),
 	}, {
-		name: "Segundo Andar",
+		name: "2º",
 		number: '2',
 		ref: createRef(),
 	}, {
-		name: "Primeiro Andar",
+		name: "1º",
 		number: '1',
 		ref: createRef(),
 	}, {
@@ -47,6 +52,7 @@ class Elevator extends Component {
 		currentFloor: 'T',
 		elevatorFloor: '3',
 		isElevatorSongPlaying: false,
+		isElevatorArrived: false,
 		isShowingCandyMachine: false,
 	}
 
@@ -107,7 +113,7 @@ class Elevator extends Component {
 		})
 
 		if (!this.state.isElevatorSongPlaying) {
-			this.playSound(this.sounds.elevatorSong, 0.2)
+			this.playSound(this.sounds.elevatorSong, 0.2, true)
 			this.setState({
 				isElevatorSongPlaying: true,
 			})
@@ -133,7 +139,7 @@ class Elevator extends Component {
 
 				if (currentIndex === floorIndex) {
 					clearInterval(interval)
-					self.setVolume(self.sounds.elevatorSong, 0.1)
+					self.setVolume(self.sounds.elevatorSong, 0.02)
 					self.playSound(self.sounds.elevatorDoorOpen)
 					self.playSound(self.sounds.elevatorDing)
 				}
@@ -146,6 +152,10 @@ class Elevator extends Component {
 		const floorIndex = this.floors.findIndex((floor) => floor.number === this.state.currentFloor)
 
 		let currentIndex = currentFloorIndex
+
+		if (this.state.isElevatorArrived) {
+			return
+		}
 
 		this.playSound(this.sounds.elevatorCall)
 
@@ -163,6 +173,11 @@ class Elevator extends Component {
 
 			if (currentIndex === floorIndex) {
 				clearInterval(interval)
+
+				self.setState({
+					isElevatorArrived: true,
+				})
+
 				self.playSound(self.sounds.elevatorDoorOpen)
 				self.playSound(self.sounds.elevatorDing)
 			}
@@ -179,25 +194,43 @@ class Elevator extends Component {
 		const decorators = [{
 			children: (
 				<>
-					Terceiro Andar
+					<img
+						className="plant-floor-4"
+						src={Plant3}
+						alt={Plant3}/>
 				</>
 			)
 		},{
 			children: (
 				<>
-					Segundo Andar
+					<img
+						className="plant-floor-3"
+						src={Plant2}
+						alt={Plant2}/>
 				</>
 			)
 		},
 		{
 			children: (
 				<>
-					Primeiro Andar
+					<img
+						className="plant-floor-2"
+						src={Plant1}
+						alt={Plant1}/>
 				</>
 			)
 		},{
 			children: (
 				<>
+					<img
+						className="plant-floor-1"
+						src={Plant3}
+						alt={Plant3}/>
+					<div className="CatSleeping">
+						<img
+							src={CatSleeping}
+							alt={CatSleeping}/>
+					</div>
 					<img 
 						className="CandyMachineIcon"
 						onClick={() => this.showHideCandyMachine()}
