@@ -1,7 +1,60 @@
+.CatSleeping {
+	position: absolute;
+	width: 10vw;
+	margin-top: -53.7em;
+	margin-left: 75vw;
+	z-index: 10;
+	border-bottom: 3px solid #ffffff;
+}
+
+.CatSleeping::after {
+	content: '';
+    position: absolute;
+    left: 42%;
+    top: 100%;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #ffffff;
+    clear: both;
+}
+
+.CatSleeping img {
+	width: 10vw;
+	margin-bottom: -4px;
+}
+
 .CandyMachineIcon {
 	position: absolute;
 	width: 50%;
 	margin-top: -73.2vh;
 	margin-left: 75vw;
 	width: 85vh;
+}
+
+
+.plant-floor-1,
+.plant-floor-2,
+.plant-floor-3,
+.plant-floor-4 {
+	position: absolute;
+	z-index: 3;
+	margin-left: 40vh;
+}
+
+.plant-floor-1 {
+	margin-top: -82.2vh;
+}
+
+.plant-floor-2 {
+	margin-top: -69.6vh;
+}
+
+.plant-floor-3 {
+	margin-top: -74.4vh;
+}
+
+.plant-floor-4 {
+	margin-top: -82vh;
 }
