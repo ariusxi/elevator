@@ -1,0 +1,52 @@
+.CandyMachine {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 15;
+	display: none;
+	align-items: center;
+	justify-content: center;
+}
+
+.CandyMachine .back-button {
+	padding: 20px 22px;
+	border: none;
+	font-size: 20px;
+	border-radius: 50%;
+	z-index: 10;
+	margin-left: -9999px;
+
+	transition: .2s all;
+	color: var(--candy-machine-close-button-color);
+	background-color: var(--candy-machine-close-button-background);
+}
+
+.CandyMachine .back-button:hover {
+	cursor: pointer;
+	background-color: var(--candy-machine-close-button-background-hover);
+}
+
+.CandyMachine.active {
+	display: flex;
+}
+
+.CandyMachine.active .back-button {
+	margin-top: -72vh;
+	margin-right: -3.5vw;
+	margin-left: 0;
+}
+
+.CandyMachine .content {
+	width: 50vw;
+	height: 83vh;
+	margin-left: -9999px;
+	transition: 2.0s all;
+	border-radius: 20px;
+	border: 2px solid var(--candy-machine-border);
+}
+
+.CandyMachine.active .content {
+	margin-left: 0;
+}
