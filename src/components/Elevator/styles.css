@@ -32,8 +32,8 @@
 	top: 0;
 	box-sizing: border-box;
 	background-color: var(--elevator-door-color);
-	-webkit-transition: all .4s ease;
-	transition: all .4s ease;
+	-webkit-transition: all 4.0s ease;
+	transition: all 4.0s ease;
 }
 
 .Elevator .elevator-door .door::after {

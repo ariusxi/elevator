@@ -1,10 +1,29 @@
 import React, { createRef, Component } from 'react'
 
 import Building from '../components/Building'
+import CandyMachine from '../components/CandyMachine'
 import Floor from '../components/Floor'
 import Panel from '../components/Panel'
 
+import ElevatorButton from '../assets/sounds/elevator-button.mp3'
+import ElevatorBackground from '../assets/sounds/background.mp3'
+import ElevatorDoorOpen from '../assets/sounds/elevator-door-open.mp3'
+import ElevatorDoorClose from '../assets/sounds/elevator-door-close.mp3'
+import ElevatorDing from '../assets/sounds/elevator-ding.mp3'
+
+import CandyMachineImg from '../assets/images/candy-machine-cropped.png'
+
+import './Elevator.css'
+
 class Elevator extends Component {
+
+	sounds = {
+		elevatorCall: new Audio(ElevatorButton),
+		elevatorSong: new Audio(ElevatorBackground),
+		elevatorDoorOpen: new Audio(ElevatorDoorOpen),
+		elevatorDoorClose: new Audio(ElevatorDoorClose),
+		elevatorDing: new Audio(ElevatorDing),
+	}
 
 	floors = [{
 		name: "Terceiro Andar",
@@ -27,6 +46,8 @@ class Elevator extends Component {
 	state = {
 		currentFloor: 'T',
 		elevatorFloor: '3',
+		isElevatorSongPlaying: false,
+		isShowingCandyMachine: false,
 	}
 
 	constructor(props) {
@@ -34,6 +55,7 @@ class Elevator extends Component {
 
 		this.changeFloor = this.changeFloor.bind(this)
 		this.callElevator = this.callElevator.bind(this)
+		this.showHideCandyMachine = this.showHideCandyMachine.bind(this)
 	}
 
 	componentDidMount() {
@@ -50,15 +72,48 @@ class Elevator extends Component {
 		})
 	}
 
+	playSound(audioInstance, volume = 1, loop = false) {
+		audioInstance.volume = volume
+		audioInstance.loop = loop
+
+		audioInstance.play()
+	}
+
+	setVolume(audioInstance, volume) {
+		audioInstance.volume = volume
+	}
+
+	showHideCandyMachine() {
+		this.setState((prevState) => ({
+			isShowingCandyMachine: !prevState.isShowingCandyMachine,
+		}))
+	}
+
 	changeFloor(selectedFloor) {
 		const floor = this.floors.find((floor) => floor.number === selectedFloor)
 
 		const currentFloorIndex = this.floors.findIndex((floor) => floor.number === this.state.currentFloor)
 		const floorIndex = this.floors.findIndex((floor) => floor.number === selectedFloor)
 
+		if (floor.number === this.state.currentFloor) {
+			return
+		}
+
+		this.playSound(this.sounds.elevatorDoorClose)
+		this.playSound(this.sounds.elevatorCall)
+
 		this.setState({
 			currentFloor: selectedFloor,
 		})
+
+		if (!this.state.isElevatorSongPlaying) {
+			this.playSound(this.sounds.elevatorSong, 0.2)
+			this.setState({
+				isElevatorSongPlaying: true,
+			})
+		} else {
+			this.setVolume(this.sounds.elevatorSong, 0.2)
+		}
 
 		const self = this
 		setTimeout(() => {
@@ -78,9 +133,12 @@ class Elevator extends Component {
 
 				if (currentIndex === floorIndex) {
 					clearInterval(interval)
+					self.setVolume(self.sounds.elevatorSong, 0.1)
+					self.playSound(self.sounds.elevatorDoorOpen)
+					self.playSound(self.sounds.elevatorDing)
 				}
-			}, 1000)
-		}, 2000)
+			}, 2000)
+		}, 4000)
 	}
 
 	callElevator() {
@@ -88,6 +146,8 @@ class Elevator extends Component {
 		const floorIndex = this.floors.findIndex((floor) => floor.number === this.state.currentFloor)
 
 		let currentIndex = currentFloorIndex
+
+		this.playSound(this.sounds.elevatorCall)
 
 		const self = this
 		const interval = setInterval(() => {
@@ -103,15 +163,52 @@ class Elevator extends Component {
 
 			if (currentIndex === floorIndex) {
 				clearInterval(interval)
+				self.playSound(self.sounds.elevatorDoorOpen)
+				self.playSound(self.sounds.elevatorDing)
 			}
-		}, 1000)
+		}, 2000)
 	}
 
 	render() {
 		const {
 			currentFloor,
 			elevatorFloor,
+			isShowingCandyMachine,
 		} = this.state
+
+		const decorators = [{
+			children: (
+				<>
+					Terceiro Andar
+				</>
+			)
+		},{
+			children: (
+				<>
+					Segundo Andar
+				</>
+			)
+		},
+		{
+			children: (
+				<>
+					Primeiro Andar
+				</>
+			)
+		},{
+			children: (
+				<>
+					<img 
+						className="CandyMachineIcon"
+						onClick={() => this.showHideCandyMachine()}
+						src={CandyMachineImg} 
+						alt={CandyMachineImg}/>
+					<CandyMachine
+						isShowing={isShowingCandyMachine}
+						onHide={this.showHideCandyMachine}/>
+				</>
+			)
+		}]
 
 		return (
 			<Building>
@@ -127,7 +224,7 @@ class Elevator extends Component {
 						<Floor
 							key={key}
 							{...props}>
-							{floor.decoration}
+							{decorators[key].children}
 						</Floor>
 					)
 				})}

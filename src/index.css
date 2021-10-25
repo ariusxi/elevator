@@ -1,4 +1,10 @@
 :root {
+	/* Candy Machine */
+	--candy-machine-border: #9f9f9f;
+	--candy-machine-close-button-background: #5a5acc;
+	--candy-machine-close-button-background-hover: #4c4cad;
+	--candy-machine-close-button-color: #fff;
+
 	/* Floor */
 	--floor-wall-color-1: #5a5acc;
 	--floor-wall-color-2: #5a5acc;
