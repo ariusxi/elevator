@@ -7,6 +7,7 @@ import './styles.css'
 const Floor = forwardRef(({
 	name,
 	number,
+	children,
 	currentFloor,
 	elevatorFloor,
 	callElevator,
@@ -27,6 +28,7 @@ const Floor = forwardRef(({
 					callElevator={callElevator} />
 			</div>
 			<div className="ground"></div>
+			{children}
 		</div>
 	)
 })
